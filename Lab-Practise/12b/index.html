@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Mgmt</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Exam Mgmt System</h1>
+    <form action="/submit-data" method="POST">
+        <input type="text" name="stuID" placeholder="Enter Student ID" required><br />
+        <input type="text" name="stuName" placeholder="Enter Student Name" required><br />
+        <input type="text" name="subject" placeholder="Enter Subject Name" required><br />
+        <input type="number" name="marks" placeholder="Enter Subject Marks" required><br />
+        <input type="submit" value="Add Data"><br />
+    </form>
+
+    <form action="/fetch-all" method="GET">
+        <input type="submit" value="Fetch Students">
+    </form>
+
+    <form action="/hide-ne" method="GET">
+        <input type="submit" value="Hide NE">
+    </form>
+
+    <form action="/delete-ne" method="GET">
+        <input type="submit" value="Delete NE">
+    </form>
+
+    <form action="/delete-all" method="GET">
+        <input type="submit" value="Delete All">
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
