@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1a</title>
+</head>
+<body>
+    <h1 style="text-align: center";>JS Translate Function</h1>
+    <input type="text" name="inputText" id="input-text" placeholder="Enter the string">
+    <button id="translateButton">Translate</button>
+    
+    <div id="result-container"></div>
+
+    <script>
+        let isVowel = (ch) => {
+            return (ch == 'a' || ch=='e' || ch=='i' || ch=='o' || ch=='u');
+        }
+
+        let translate = (str) => {
+            let newStr = "";
+            for(var ch of str) {
+                if(isVowel(ch) || ch==' ') {
+                    newStr += ch;
+                }
+                else {
+                    newStr += `${ch}o${ch}`;
+                }
+            }
+            console.log(newStr);
+            return newStr;
+        }
+
+        const translateButton = document.getElementById("translateButton");
+        // const inputElement = document.getElementById("input-text");
+        // const inputText = inputElement ? inputElement.value.trim().toLowerCase() : "";
+        const resultContainer = document.getElementById("result-container");
+        translateButton.onclick = () => {
+            const inputElement = document.getElementById("input-text");
+            const inputText = inputElement ? inputElement.value.trim().toLowerCase() : "";
+            console.log(`Input text: `+inputText);
+            const resultString = translate(inputText);
+            resultContainer.innerHTML = `<h5>Result: ${resultString}`;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6a - React</title>
+    <script src="../../react_files/react.development.js"></script>
+    <script src="../../react_files/react-dom.development.js"></script>
+    <script src="../../react_files/prop-types.js"></script>
+    <script src="../../react_files/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+
+        function DisplayName(props) {
+            const [inputText, setInputText] = React.useState("");
+
+            const updateText = (event) => {
+                setInputText(event.target.value);
+            }             
+
+            return (
+                <div>
+                    <input 
+                        type="text" 
+                        value={inputText} 
+                        onChange={updateText} 
+                        placeholder={"Enter name"} 
+                        id="input-element"/>
+                    <div id="result-container">{inputText}</div>
+                </div>
+            )
+        }
+
+        function App(props) {
+            return (
+                <div>
+                    <h1>{props.msg}</h1>
+                    <DisplayName />
+                </div>
+            )
+        }
+
+        const root = document.getElementById("root");
+        ReactDOM.render(<App msg={"Double Binding of Data"}/>, root);
+    </script>
+</body>
+</html>

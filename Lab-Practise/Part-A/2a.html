@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2a</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Number to Month (using Closures)</h1>
+    <input type="number" min="1" max="12" name="inputNumber" id="input-number" placeholder="Enter a valid number">
+    <button id="month-button">Get Month</button>
+    <div id="results-container"></div>
+
+    <script>
+        const monthButton = document.getElementById("month-button");
+        const resultsContainer = document.getElementById("results-container");
+
+        const monthClosure = () => {
+            const mapping = {
+                1: "Jan", 2: "Feb", 3: "Mar",
+                4: "Apr", 5: "May", 6: "June",
+                7: "July", 8: "Aug", 9: "Sept",
+                10: "Oct", 11: "Nov", 12: "Dec",
+            };
+
+            function getMonth(monthNumber) {
+                return mapping[monthNumber];
+            };
+
+            return getMonth;
+        }
+
+        const getMonth = monthClosure();
+
+        monthButton.addEventListener("click", () => {
+            const inputNumber = Number(document.getElementById("input-number").value.trim());
+            resultsContainer.innerHTML = `<h4>Month = ${getMonth(inputNumber)}</h4>`;
+        })
+    </script>
+</body>
+</html>
