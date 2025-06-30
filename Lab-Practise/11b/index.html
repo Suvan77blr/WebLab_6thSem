@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendence Mgmt System</title>
+</head>
+<body>
+    <h1>Attendence Mgmt System</h1>
+    <form action="/submit-data" method="POST">
+        <input type="text" name="stuId" placeholder="Enter student ID" required><br />
+        <input type="text" name="stuName" placeholder="Enter student Name" required><br />
+        <input type="text" name="course" placeholder="Enter course name" required><br />
+        <input type="number" name="totalAttendance" placeholder="Enter total classes" required><br />
+        <input type="number" name="studentAttendance" placeholder="Enter classes attended by student" required><br />
+        <input type="submit" value="Insert Data">
+    </form>
+
+    <form action="/show-all" method="GET">
+        <input type="submit" value="Show All Students">
+    </form>
+    
+    <form action="/show-shortage" method="GET">
+        <input type="submit" value="Show Shortage Students">
+    </form>
+    
+    <button id="update-button">Update Attendance</button>
+
+    <div id="updation-section" style="display: none;">
+        <input type="text" id="updationId" name="stuId" placeholder="Enter Student ID"><br />
+        <input type="number" id="newAttendance" name="newAttendance" placeholder="New number of classes attended: "><br />
+        <button id="updation-submit-button">Update Attendance</button>
+    </div>
+
+    <form action="/delete-all" method="GET">
+        <input type="submit" value="Delete all records">
+    </form>
+
+    <script src="script.js"></script>
+    <script>
+        const updationSection = document.querySelector("#updation-section");
+
+        const updateButton = document.querySelector("#update-button");
+        updateButton.onclick = () => {
+            // const updationSection = querySelector("#updation-section");
+            updationSection.style.display = "block";
+        }
+
+        const updationSubmitButton = document.querySelector("#updation-submit-button");
+        updationSubmitButton.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const stuId = document.getElementById("updationId").value;
+            const newAttendance = parseFloat(document.getElementById("newAttendance").value).toFixed(2);
+
+            try {
+                const response = await fetch("/update-attendance", {
+                    headers: { "Content-type": "application/json" },
+                    method: "PUT",
+                    body: JSON.stringify({stuId, newAttendance})
+                });
+
+                updationSection.style.display = "none";
+
+                alert(response.message);
+
+            } catch(err) {
+                console.log("Error in Updating: "+err);
+            }
+        });
+    </script>
+</body>
+</html>
