@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/create" method="post">
+        <input type="number" name="id">
+        <input type="status" name="status">
+        <button type="submit">Submit</button>
+    </form>
+    <form action="/getAll" method="get">
+        <button type="submit"> Get All</button>
+    </form>
+
+    <input type="number" name="id" id="idUpdate" placeholder="ID to update">
+    <button type="submit" id="updateButton">Update</button>
+
+    
+        <a href="/delete-all"><button>Delete ID LTE 4</button></a>
+    
+
+    <script>
+        const button = document.getElementById('updateButton')
+        button.onclick=async ()=>{
+            const id = document.getElementById("idUpdate").value
+            try{
+                const res = await fetch("/update",{
+                method:'PUT',
+                headers:{'Content-Type':'application/json'},
+                body:JSON.stringify({id})
+            });
+            const msg = await res.json();
+            alert(msg.message);
+            }catch(e){
+                console.log(e)
+            }
+
+        }
+
+    </script>
+</body>
+</html>
